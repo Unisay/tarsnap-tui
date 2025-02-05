@@ -1,0 +1,89 @@
+cabal-version: 3.0
+name:          tarsnap-tui
+version:       0.1.0.0
+license:
+author:        Yura
+build-type:    Simple
+
+common shared
+  ghc-options:
+    -Wall -Wincomplete-record-updates -Wincomplete-uni-patterns
+    -Wmissing-deriving-strategies -Wunused-foralls -Wunused-foralls
+    -fprint-explicit-foralls -fprint-explicit-kinds
+
+  mixins:
+    base hiding (Prelude),
+    relude (Relude as Prelude, Relude.Container.One),
+    relude
+
+  default-extensions:
+    BangPatterns
+    BlockArguments
+    ConstraintKinds
+    DataKinds
+    DeriveDataTypeable
+    DeriveFoldable
+    DeriveFunctor
+    DeriveGeneric
+    DeriveLift
+    DeriveTraversable
+    DerivingStrategies
+    DerivingVia
+    EmptyCase
+    EmptyDataDecls
+    EmptyDataDeriving
+    ExistentialQuantification
+    ExplicitForAll
+    FlexibleContexts
+    FlexibleInstances
+    GADTSyntax
+    GeneralisedNewtypeDeriving
+    ImportQualifiedPost
+    KindSignatures
+    LambdaCase
+    MultiParamTypeClasses
+    MultiWayIf
+    NoStarIsType
+    NumericUnderscores
+    OverloadedLabels
+    OverloadedStrings
+    PolyKinds
+    PostfixOperators
+    RankNTypes
+    RecordWildCards
+    StandaloneDeriving
+    StandaloneKindSignatures
+    TupleSections
+    TypeApplications
+    TypeFamilies
+    TypeOperators
+    UnicodeSyntax
+    ViewPatterns
+
+  build-depends:
+    , base       ^>=4.19.2.0
+    , relude     >=1.2.2
+    , with-utf8  >=1.1
+
+  default-language:   Haskell2010
+
+library
+  import:          shared
+  exposed-modules: MyLib
+  build-depends:   base ^>=4.19.2.0
+  hs-source-dirs:  src
+
+executable tarsnap-tui
+  import:           shared
+  main-is:          Main.hs
+  build-depends:    tarsnap-tui
+  hs-source-dirs:   app
+
+test-suite tarsnap-tui-test
+  import:         shared
+  type:           exitcode-stdio-1.0
+  hs-source-dirs: test
+  main-is:        Main.hs
+  build-depends:
+    , base         ^>=4.19.2.0
+    , tarsnap-tui
