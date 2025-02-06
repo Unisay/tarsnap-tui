@@ -61,7 +61,7 @@ common shared
     ViewPatterns
 
   build-depends:
-    , base       ^>=4.19.2.0
+    , base       >=4.16 && <4.20
     , relude     >=1.2.2
     , with-utf8  >=1.1
 
@@ -70,7 +70,6 @@ common shared
 library
   import:          shared
   exposed-modules: MyLib
-  build-depends:   base ^>=4.19.2.0
   hs-source-dirs:  src
 
 executable tarsnap-tui
@@ -85,5 +84,4 @@ test-suite tarsnap-tui-test
   hs-source-dirs: test
   main-is:        Main.hs
   build-depends:
-    , base         ^>=4.19.2.0
     , tarsnap-tui
